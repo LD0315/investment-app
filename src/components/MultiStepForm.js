@@ -30,7 +30,7 @@ export const MultiStepForm = () => {
     const [formData, setForm] = useForm(userInput);
     const { step, navigation } = useStep({
         steps,
-        initialStep: 3,
+        initialStep: 4,
     });
 
     const props = { formData, setForm, navigation }

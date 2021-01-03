@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Container from '@material-ui/core/Container';
 
 export const Submit = () => {
     return (
-        <div>
-            <h1>Submit</h1>
-            
-        </div>
+       <Container maxWidth="sm" style={{ marginTop: '4rem' }}>
+           <h3>Your investment request has been submitted, 
+               we will contact you shortly!</h3>
+       </Container>
     );
 };

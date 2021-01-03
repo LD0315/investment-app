@@ -44,6 +44,7 @@ export const Review = ( formData, navigation ) => {
                     color="primary"
                     variant="contained"
                     style={{ marginTop: '1.5rem'}}
+                    onClick={() => go('submit')}
                 >
                     Submit
                 </Button>
