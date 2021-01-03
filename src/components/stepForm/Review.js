@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
 export const Review = ( formData, navigation ) => {
-    const { go } = navigation;
+    const { goTo } = navigation;
     const { 
         firstName,
         lastName,
@@ -26,17 +26,17 @@ export const Review = ( formData, navigation ) => {
         <div>
             <Container maxWidth='sm'>
                 <h3>Review</h3>
-                <RenderAccordion summary="Names" go={ go } details={[
+                <RenderAccordion summary="Names" go={ goTo } details={[
                     { 'First Name': firstName },
                     { 'Last Name': lastName },
                     { 'Date Of Birth': dateOfBirth },
                 ]}/>
-                <RenderAccordion summary="Contact" go={ go } details={[
+                <RenderAccordion summary="Contact" go={ goTo } details={[
                     { 'Email': email },
                     { 'Phone': phone },
                     { 'Address': address },
                 ]}/>
-                <RenderAccordion summary="Investment Funds" go={ go } details={[
+                <RenderAccordion summary="Investment Funds" go={ goTo } details={[
                     { 'Options': option },
                     { 'Amount': amount },
                 ]}/>
@@ -44,7 +44,7 @@ export const Review = ( formData, navigation ) => {
                     color="primary"
                     variant="contained"
                     style={{ marginTop: '1.5rem'}}
-                    onClick={() => go('submit')}
+                    onClick={() => goTo('submit')}
                 >
                     Submit
                 </Button>
