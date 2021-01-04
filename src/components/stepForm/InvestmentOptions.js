@@ -3,17 +3,31 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import OptionForm from './OptionForm';
+import Select from '@material-ui/core/Select';
 
 
        
 export const InvestmentOptions = ( formData, setForm, navigation ) => {
-    const { amount } = formData;
+    const { option, amount } = formData;
     return (
         <Container maxWidth="xs">
             <div style={{ marginTop: '2rem' }}>
             <h3>Investment Funds</h3>
             
-           <OptionForm />
+           <form>
+               <Select 
+                id="option"
+                label="Option"
+                name="option"
+                value={option}
+                variant="outlined"
+                margin="normal"
+                fullWidth
+               >
+                   <option value="premium">Premium - From $10,000 - To $250,000 - </option>
+                   <option value="select">Select - From $25,000 - To $250,000 - </option>
+               </Select>
+           </form>
             <TextField 
                     label="Investment Amount"
                     name="amount"
@@ -27,7 +41,8 @@ export const InvestmentOptions = ( formData, setForm, navigation ) => {
                     fullWidth
                 />   
            
-            <div style={{ marginTop: '1rem' }}>
+                 <div style={{ marginTop: '1rem' }}>
+                
                     <Button 
                         color="secondary" 
                         variant="contained"

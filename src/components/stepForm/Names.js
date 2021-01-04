@@ -52,7 +52,7 @@ export const Names = ({ formData, setForm, navigation }) => {
 
                 <Button 
                     variant="contained" 
-                    fullWidth color="primary" 
+                    color="primary" 
                     style={{ marginTop: '1rem' }}
                     onClick={() => navigation.next()}
                     >

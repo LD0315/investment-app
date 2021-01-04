@@ -4,7 +4,7 @@ import { Names } from "./stepForm/Names";
 import { Contact } from "./stepForm/Contact";
 import { InvestmentOptions } from "./stepForm/InvestmentOptions";
 import { Review } from "./stepForm/Review";
-import { Submit } from "./stepForm/Submit";
+import { Submit } from "./Submit";
 
 
 const userInput = {
@@ -30,7 +30,7 @@ export const MultiStepForm = () => {
     const [formData, setForm] = useForm(userInput);
     const { step, navigation } = useStep({
         steps,
-        initialStep: 0,
+        initialStep: 3,
     });
 
     const props = { formData, setForm, navigation }
