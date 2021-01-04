@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hooks-helper";
-import { useFormMeta } from "react-hooks-form";
+//import { useForm } from "react-hook-form";
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -23,10 +23,11 @@ const userInput = {
 
 export const Form = () => {
 
-    const [formData, setForm] = useForm(userInput);
-    const { submitting } = useFormMeta()
+    const [formData, setForm, submitting] = useForm(userInput);
+    //const { submitting } = useFormDate()
     //const props = { formData, setForm }
     const { firstName, lastName, email, phone, address, option, amount } = formData;
+    //const handleSubmit = () => form.submit()
 
 
     
