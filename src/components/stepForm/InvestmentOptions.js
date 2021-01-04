@@ -26,7 +26,7 @@ export const InvestmentOptions = ( formData, setForm, navigation ) => {
                     autoComplete
                     fullWidth
                 />   
-            </div>
+           
             <div style={{ marginTop: '1rem' }}>
                     <Button 
                         color="secondary" 
@@ -44,6 +44,7 @@ export const InvestmentOptions = ( formData, setForm, navigation ) => {
                         Next
                     </Button>
                 </div>
+             </div>
             </Container>
     );
 };
