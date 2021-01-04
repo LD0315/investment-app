@@ -14,12 +14,13 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
         const usersCollection = db.collection('userInput');
 
         app.use(bodyParser.urlencoded({ extended: true }));
-        app.get('/submit', (req, res) => { });
+        //app.get('/submit', (req, res) => { });
 
         app.post('/submit', (req, res) => {
             usersCollection.insertOne(req.body)
                 .then(result => {
-                    console.log(result);
+                    res.redirect('/')
+                    //console.log(result);
                 })
                 .catch(error => console.error(error));
             //console.log('Helloooooooooooooooooo!');
