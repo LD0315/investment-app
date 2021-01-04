@@ -34,7 +34,7 @@ export const Form = () => {
     
 
     return (
-            <form action="/" method="POST">
+            <form action="/submit" method="POST">
                 <Container maxWidth="xs">
                     <h3>Names</h3>
                     <TextField 
