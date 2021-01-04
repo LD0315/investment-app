@@ -14,7 +14,6 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
         const usersCollection = db.collection('userInput');
 
         app.use(bodyParser.urlencoded({ extended: true }));
-        //app.get('/submit', (req, res) => { });
 
         app.post('/submit', (req, res) => {
             usersCollection.insertOne(req.body)
@@ -26,6 +25,17 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
             //console.log('Helloooooooooooooooooo!');
             //console.log(req.body);
         })
+
+        // show user submittion 
+        app.get('/', (req, res) => { 
+            db.collection('userInput').find().toArray()
+                .then(results => {
+                    console.log(results);
+                })
+                .catch(error => console.error(error));
+        });
+
+        
          
         app.listen(3000, function() {
             console.log('listening on 3000');
