@@ -7,7 +7,11 @@ app.listen(3000, function() {
     console.log('listening on 3000');
 })
 
-app.get('/', (req, res) => {
+//app.get('/', (req, res) => {
     //res.send('Hello World');
-    res.sendFile(__dirname + '/index.html')
+    //res.sendFile(__dirname + '/index.html')
+//});
+
+app.post('/quotes', (req, res) => {
+    console.log('Helloooooooooooooooooo!');
 })
