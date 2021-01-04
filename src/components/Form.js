@@ -34,12 +34,13 @@ export const Form = () => {
     
 
     return (
-            <form>
+            <form action="/" method="POST">
                 <Container maxWidth="xs">
                     <h3>Names</h3>
                     <TextField 
                         label="First Name"
                         name="firstName"
+                        type="text"
                         value={firstName}
                         onChange={setForm}
                         margin="normal"
@@ -51,6 +52,7 @@ export const Form = () => {
                     <TextField 
                         label="Last Name"
                         name="lastName"
+                        type="text"
                         value={lastName}
                         onChange={setForm}
                         margin="normal"
@@ -157,7 +159,7 @@ export const Form = () => {
                 </div>
 
             </Container>
-            </form>
+        </form>
         );
     
 };
