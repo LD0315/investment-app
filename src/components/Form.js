@@ -121,6 +121,7 @@ export const Form = () => {
                         variant="outlined"
                         margin="normal"
                         fullWidth
+                        required
                     >
                     <MenuItem value="premium">Premium - From $10,000 - To $250,000 - </MenuItem>
                     <MenuItem value="select">Select - From $25,000 - To $250,000 - </MenuItem>
@@ -137,6 +138,7 @@ export const Form = () => {
                     variant="outlined"
                     autoComplete
                     fullWidth
+                    required
                 />   
                 </div>
                 <div style={{ marginBottom: '2rem'}}>
