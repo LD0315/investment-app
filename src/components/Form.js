@@ -20,20 +20,21 @@ const userInput = {
 };
 
 
-
 export const Form = () => {
 
-    const [formData, setForm, submitting] = useForm(userInput);
+    const [formData, setForm] = useForm(userInput);
     //const { submitting } = useFormDate()
     //const props = { formData, setForm }
     const { firstName, lastName, email, phone, address, option, amount } = formData;
     //const handleSubmit = () => form.submit()
 
-
+    //const onSubmit = (data) => {
+        //console.log(data);
+    //};
     
 
     return (
-            <div>
+            <form>
                 <Container maxWidth="xs">
                     <h3>Names</h3>
                     <TextField 
@@ -126,33 +127,35 @@ export const Form = () => {
                 </Select>
              </form>
                 <TextField 
-                        label="Investment Amount"
-                        name="amount"
-                        type="number"
-                        placeholder="$ AUS"
-                        value={amount}
-                        onChange={setForm}
-                        margin="normal"
-                        variant="outlined"
-                        autoComplete
-                        fullWidth
-                    />   
+                    label="Investment Amount"
+                    name="amount"
+                    type="number"
+                    placeholder="$ AUS"
+                    value={amount}
+                    onChange={setForm}
+                    margin="normal"
+                    variant="outlined"
+                    autoComplete
+                    fullWidth
+                />   
                 </div>
                 <div style={{ marginBottom: '2rem'}}>
                 <Button
                     color="primary"
                     variant="contained"
+                    type="submit"
                     style={{ marginTop: '1.5rem'}}
-                    disabled={submitting}
-                    loading={submitting}
-                    text="Save"
+                    //disabled={submitting}
+                    //onClick={submitting}
+                    //loading={submitting}
+                    text="Save"    
                 >
                     Submit
                 </Button>
                 </div>
 
             </Container>
-            </div>
+            </form>
         );
     
 };
