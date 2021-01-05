@@ -1,9 +1,19 @@
-// console.log('May Node be with you');
+// console.log('Node Test');
 const express = require('express');
+const router = express.Router()
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-app.use(cors())
+app.use(cors());
+
+router.get("/", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+     });
+    
 
 const MongoClient = require('mongodb').MongoClient;
 
@@ -27,7 +37,8 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
               usersCollection.insertOne(JSON.parse(body))
                 .then(result => {
                     console.log(result);
-                    res.header("Access-Control-Allow-Origin","*")
+                    //res.header("Access-Control-Allow-Origin","*")
+                    
                     res.send(result)
                     //res.redirect('/')
                     //console.log("!!!!!!!!!!!");

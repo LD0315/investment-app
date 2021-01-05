@@ -27,25 +27,9 @@ export const Form = () => {
 
     const [formData, setForm] = useForm(userInput);
     const [submitted, setSubmitted] = useState(false);
-    //const { submitting } = useFormDate()
-    //const props = { formData, setForm }
+    
     const { firstName, lastName, email, phone, address, option, amount } = formData;
-    //const handleSubmit = () => form.submit()
-
-    //const onSubmit = (data) => {
-        //console.log(data);
-    //};
-
-    //function displayPage() {
-        //document.getElementById('submit').style.display = "block";
-
-        // show submit confirmtaion
-        //if ('submit' === true) {
-            //document.getElementById('submit').style.display = '';
-        //} else if ('submit' === false) {
-            //document.getElementById('submit').style.display = "none";
-        //}
-    //}
+    
 
     const handleOnSubmit = async ()=>{
         console.log('submit data',formData)
@@ -67,7 +51,7 @@ export const Form = () => {
                         type="text"
                         value={firstName}
                         onChange={setForm}
-                        
+                        style={{ marginTop: '1.0rem' }}
                         variant="outlined"
                         fullWidth
                         required
@@ -78,7 +62,7 @@ export const Form = () => {
                         type="text"
                         value={lastName}
                         onChange={setForm}
-                        
+                        style={{ marginTop: '1.0rem' }}
                         variant="outlined"
                         fullWidth
                         required
@@ -91,7 +75,7 @@ export const Form = () => {
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        
+                        style={{ marginTop: '1.0rem' }}
                         variant="outlined" 
                         fullWidth
                         required
@@ -102,7 +86,7 @@ export const Form = () => {
                         name="email"
                         value={email}
                         onChange={setForm}
-                        
+                        style={{ marginTop: '1.0rem' }}
                         variant="outlined"
                         fullWidth
                         required
@@ -112,7 +96,7 @@ export const Form = () => {
                         name="phone"
                         value={phone}
                         onChange={setForm}
-                        
+                        style={{ marginTop: '1.0rem' }}
                         variant="outlined"
                         fullWidth
                         required
@@ -122,7 +106,7 @@ export const Form = () => {
                         name="address"
                         value={address}
                         onChange={setForm}
-                        
+                        style={{ marginTop: '1.0rem' }}
                         variant="outlined"
                         fullWidth
                         required
@@ -139,7 +123,7 @@ export const Form = () => {
                         value={option}
                         onChange={setForm}
                         variant="outlined"
-                        
+                        style={{ marginTop: '1.0rem' }}
                         fullWidth
                         required
                     >
@@ -154,7 +138,7 @@ export const Form = () => {
                     placeholder="$ AUS"
                     value={amount}
                     onChange={setForm}
-                    
+                    style={{ marginTop: '1.0rem' }}
                     variant="outlined"
                     fullWidth
                     required
