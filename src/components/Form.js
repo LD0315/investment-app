@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
+// initial state
 const userInput = {
     firstName: "",
     lastName: "",
@@ -31,11 +32,23 @@ export const Form = () => {
     //const onSubmit = (data) => {
         //console.log(data);
     //};
-    
+
+    //function displayPage() {
+        //document.getElementById('submit').style.display = "block";
+
+        // show submit confirmtaion
+        //if ('submit' === true) {
+            //document.getElementById('submit').style.display = '';
+        //} else if ('submit' === false) {
+            //document.getElementById('submit').style.display = "none";
+        //}
+    //}
 
     return (
-            <form action="/submit" method="POST">
+            <form id="form" action="/submit" method="POST">
                 <Container maxWidth="xs">
+                    <h2>Investment App</h2>
+                    <hr></hr>
                     <h3>Names</h3>
                     <TextField 
                         label="First Name"
@@ -148,16 +161,15 @@ export const Form = () => {
                     color="primary"
                     variant="contained"
                     type="submit"
-                    style={{ marginTop: '1.5rem'}}
-                    //disabled={submitting}
-                    //onClick={submitting}
-                    //loading={submitting}
+                    style={{ marginTop: '1.5rem' }}
+                    //style="display:none"
+                    //onChange="document.getElementById('fsubmit').style.display = '';"
                     text="Save"    
                 >
                     Submit
                 </Button>
                 </div>
-
+                
             </Container>
         </form>
         );

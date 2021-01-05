@@ -16,25 +16,31 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
         app.use(bodyParser.urlencoded({ extended: true }));
 
         app.post('/submit', (req, res) => {
+            console.log(req.body);
             usersCollection.insertOne(req.body)
                 .then(result => {
+                    console.log(result);
                     res.redirect('/')
-                    //console.log(result);
+                    //console.log("!!!!!!!!!!!");
+                    
                 })
                 .catch(error => console.error(error));
             //console.log('Helloooooooooooooooooo!');
             //console.log(req.body);
         })
 
+        
         // show user submittion 
         app.get('/', (req, res) => { 
+            res.send('Hello World');
+
             db.collection('userInput').find().toArray()
                 .then(results => {
                     console.log(results);
                 })
                 .catch(error => console.error(error));
         });
-
+        
         
          
         app.listen(3000, function() {
