@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import { useForm } from "react-hooks-helper";
 //import { useForm } from "react-hook-form";
+import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Submit } from "./Submit";
 
 
 // initial state
@@ -24,6 +26,7 @@ const userInput = {
 export const Form = () => {
 
     const [formData, setForm] = useForm(userInput);
+    const [submitted, setSubmitted] = useState(false);
     //const { submitting } = useFormDate()
     //const props = { formData, setForm }
     const { firstName, lastName, email, phone, address, option, amount } = formData;
@@ -44,8 +47,16 @@ export const Form = () => {
         //}
     //}
 
-    return (
-            <form id="form" action="/submit" method="POST">
+    const handleOnSubmit = async ()=>{
+        console.log('submit data',formData)
+        const response = await axios.post('localhost:4000/submit',JSON.stringify(formData));
+        // set state 'submitted' = true;
+        setSubmitted(true);
+        console.log(response);
+    }
+
+    return (!submitted ?
+            <form>
                 <Container maxWidth="xs">
                     <h2>Investment App</h2>
                     <hr></hr>
@@ -56,9 +67,8 @@ export const Form = () => {
                         type="text"
                         value={firstName}
                         onChange={setForm}
-                        margin="normal"
+                        
                         variant="outlined"
-                        autoComplete
                         fullWidth
                         required
                     />
@@ -68,9 +78,8 @@ export const Form = () => {
                         type="text"
                         value={lastName}
                         onChange={setForm}
-                        margin="normal"
+                        
                         variant="outlined"
-                        autoComplete
                         fullWidth
                         required
                     />
@@ -82,9 +91,8 @@ export const Form = () => {
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        margin="normal"
+                        
                         variant="outlined" 
-                        autoComplete
                         fullWidth
                         required
                     />
@@ -94,9 +102,8 @@ export const Form = () => {
                         name="email"
                         value={email}
                         onChange={setForm}
-                        margin="normal"
+                        
                         variant="outlined"
-                        autoComplete
                         fullWidth
                         required
                     />
@@ -105,9 +112,8 @@ export const Form = () => {
                         name="phone"
                         value={phone}
                         onChange={setForm}
-                        margin="normal"
+                        
                         variant="outlined"
-                        autoComplete
                         fullWidth
                         required
                     />
@@ -116,9 +122,8 @@ export const Form = () => {
                         name="address"
                         value={address}
                         onChange={setForm}
-                        margin="normal"
+                        
                         variant="outlined"
-                        autoComplete
                         fullWidth
                         required
                     />
@@ -126,7 +131,7 @@ export const Form = () => {
                 <div style={{ marginTop: '1.5rem' }}>
                 <h3>Investment Funds</h3> <br></br>
                 
-                <form>
+              
                     <Select 
                         id="option"
                         label="Option"
@@ -134,14 +139,14 @@ export const Form = () => {
                         value={option}
                         onChange={setForm}
                         variant="outlined"
-                        margin="normal"
+                        
                         fullWidth
                         required
                     >
                     <MenuItem value="premium">Premium - From $10,000 - To $250,000 - </MenuItem>
                     <MenuItem value="select">Select - From $25,000 - To $250,000 - </MenuItem>
                 </Select>
-             </form>
+            
                 <TextField 
                     label="Investment Amount"
                     name="amount"
@@ -149,9 +154,8 @@ export const Form = () => {
                     placeholder="$ AUS"
                     value={amount}
                     onChange={setForm}
-                    margin="normal"
+                    
                     variant="outlined"
-                    autoComplete
                     fullWidth
                     required
                 />   
@@ -160,11 +164,12 @@ export const Form = () => {
                 <Button
                     color="primary"
                     variant="contained"
-                    type="submit"
+                    type="button"
                     style={{ marginTop: '1.5rem' }}
                     //style="display:none"
                     //onChange="document.getElementById('fsubmit').style.display = '';"
                     text="Save"    
+                    onClick={handleOnSubmit}
                 >
                     Submit
                 </Button>
@@ -172,6 +177,7 @@ export const Form = () => {
                 
             </Container>
         </form>
+        :<Submit/>
         );
     
 };

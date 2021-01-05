@@ -1,8 +1,10 @@
 // console.log('May Node be with you');
-
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
+app.use(cors())
+
 const MongoClient = require('mongodb').MongoClient;
 
 MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/investment-database?retryWrites=true&w=majority', {
@@ -16,15 +18,25 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
         app.use(bodyParser.urlencoded({ extended: true }));
 
         app.post('/submit', (req, res) => {
-            console.log(req.body);
-            usersCollection.insertOne(req.body)
+            console.log(req);
+            let body = [];
+            req.on('data', (chunk) => {
+              body.push(chunk);
+            }).on('end', () => {
+              body = Buffer.concat(body).toString();
+              usersCollection.insertOne(JSON.parse(body))
                 .then(result => {
                     console.log(result);
-                    res.redirect('/')
+                    res.header("Access-Control-Allow-Origin","*")
+                    res.send(result)
+                    //res.redirect('/')
                     //console.log("!!!!!!!!!!!");
                     
                 })
                 .catch(error => console.error(error));
+              res.end(body);
+            });
+            
             //console.log('Helloooooooooooooooooo!');
             //console.log(req.body);
         })
@@ -43,8 +55,8 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
         
         
          
-        app.listen(3000, function() {
-            console.log('listening on 3000');
+        app.listen(4000, function() {
+            console.log('listening on 4000');
         });
     })
     .catch(console.error);
