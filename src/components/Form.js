@@ -29,39 +29,6 @@ export const Form = () => {
     
     const { firstName, lastName, dateOfBirth, email, phone, address, option, amount } = formData;
 
-    const amountValidation = amount => {
-        // if doensn't fill the amount (empty)
-        if (null) {
-          return 'Amount is required';
-        }
-        // if option === premium: 10000 < amount < 250000
-        if (amount < 10000) {
-          return 'Amount must be at least 10000';
-        }
-
-        //if option === select: 25000 < amount < 250000
-        if (amount > 250000) {
-          return 'Amount must be under 250000';
-        }
-        return null;
-      };
-
-    
-    /*
-    const emailValidation = email => {
-        if (
-          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-            email,
-          )
-        ) {
-          return null;
-        }
-        if (email.trim() === '') {
-          return 'Email is required';
-        }
-        return 'Please enter a valid email';
-      };
-      */
     
       const validateEmail = () => {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -94,7 +61,6 @@ export const Form = () => {
         return true;
       }
 
-      
       const validateForm = () => {
           console.log(formData);
             if (firstName === "" || !validName(firstName)) {
@@ -113,7 +79,7 @@ export const Form = () => {
                 alert("invalid phone");
                 return false;
             }
-            // address, option, amount 
+            
             if (address === "") {
                 alert("invalid addr");
                 return false;
@@ -156,8 +122,6 @@ export const Form = () => {
                     return false;
                 }
             }
-
-
             return true;
       }
 
@@ -278,7 +242,6 @@ export const Form = () => {
                     placeholder="$ AUS"
                     value={amount}
                     onChange={setForm}
-                    //onChange={amountValidation}
                     style={{ marginTop: '1.0rem' }}
                     variant="outlined"
                     fullWidth
