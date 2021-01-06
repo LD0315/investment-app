@@ -43,7 +43,7 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
             
         // show user submittion 
         app.get('/', (req, res) => { 
-            res.send('Hello World');
+            // res.send('Hello World');
 
             db.collection('userInput').find().toArray()
                 .then(results => {
