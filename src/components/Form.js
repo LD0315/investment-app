@@ -63,9 +63,111 @@ export const Form = () => {
       };
       */
     
+      const validateEmail = () => {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      }
+
+      const validName = (name: String) => {
+
+            for (var i = 0; i < name.length; i++) {
+                var c = name.charAt(i);
+
+                if (!isNaN(c)) {
+                    return false;
+                }
+            }
+            return true;
+      }
+
+      const validNumber = (num: String) => {
+        
+        for (var i = 0; i < num.length; i++) {
+            var c = num.charAt(i);
+            if (c === '+' && i === 0) {
+                continue;
+            }
+            if (isNaN(c)) {
+                return false;
+            }
+        }
+        return true;
+      }
+
+      
+      const validateForm = () => {
+          console.log(formData);
+            if (firstName === "" || !validName(firstName)) {
+                alert("invalid firstname");
+                return false;
+            }
+            if (lastName === "" || !validName(lastName)) {
+                alert("invalid familyname");
+                return false;
+            }
+            if (email === "" || !validateEmail()) {
+                alert("invalid email");
+                return false;
+            }
+            if (phone === "" || !validNumber(phone)) {
+                alert("invalid phone");
+                return false;
+            }
+            // address, option, amount 
+            if (address === "") {
+                alert("invalid addr");
+                return false;
+
+            }
+            if (dateOfBirth === "") {
+                alert("please enter date of birth");
+                return false;
+            }
+            var moment = require('moment');
+            //"2021-01-20"
+            var dob = moment(dateOfBirth);
+
+            var now = moment(new Date());
+
+            var n = now.diff(dob, "year");
+
+            if (n < 18) {
+                alert("You must be at least 18 years old to use this app");
+                return false;
+            }
+
+            if (option === "") {
+                alert("please select investment option");
+                return false;
+            }
+            if (amount === "") {
+                alert("please enter amount");
+                return false;
+            }
+            var am = parseInt(amount);
+            if (option === "premium") {
+                if (am < 10000 || am > 250000) {
+                    alert("was expecting value between 10,000 and 250,000");
+                    return false;
+                }
+            }else {
+                if (am < 25000 || am > 250000) {
+                    alert("was expecting value between 25,000 and 250,000");
+                    return false;
+                }
+            }
+
+
+            return true;
+      }
 
     const handleOnSubmit = async ()=>{
-        console.log('submit data',formData)
+        //console.log('submit data',formData);
+
+        if (!validateForm()) {
+            
+            return;
+        }
         const response = await axios.post('http://localhost:4000/submit', formData);
         // set state 'submitted' = true;
         setSubmitted(true);
@@ -102,7 +204,7 @@ export const Form = () => {
                     />
                     <TextField
                         id="date"
-                        name=" dateOfBirth"
+                        name="dateOfBirth"
                         label="Date Of Birth"
                         type="date" 
                         value={dateOfBirth}
@@ -176,6 +278,7 @@ export const Form = () => {
                     placeholder="$ AUS"
                     value={amount}
                     onChange={setForm}
+                    //onChange={amountValidation}
                     style={{ marginTop: '1.0rem' }}
                     variant="outlined"
                     fullWidth
