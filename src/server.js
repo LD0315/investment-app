@@ -41,7 +41,6 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
               })
             });
             
-        
         // show user submittion 
         app.get('/', (req, res) => { 
             res.send('Hello World');
@@ -54,7 +53,6 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
         });
         
         
-         
         app.listen(4000, function() {
             console.log('listening on 4000');
         });
