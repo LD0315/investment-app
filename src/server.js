@@ -5,14 +5,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 router.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Max-Age", "1800");
-    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With", "content-type");
     res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
-     });
+});
     
 
 const MongoClient = require('mongodb').MongoClient;
@@ -28,8 +27,27 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
         app.use(bodyParser.urlencoded({ extended: true }));
 
         app.post('/submit', (req, res) => {
-            console.log(req);
-            let body = [];
+            //console.log('###',JSON.stringify(req.body));
+            // let body = [];
+            // body.push(req.body);
+
+            usersCollection.insertOne(req.body, (error, result) => {
+                // console.log("!!!!!!!!!!!!!");
+                //console.log(result);
+                if (error) {
+                    console.log(error)
+                    res.status(400).json({ "error": error.message })
+                    return;
+                };
+
+                res.json({
+                    //console.log("message");
+                    "message" : res.status(200), // success
+                    "data":  res.send(result)   // return data object
+                })
+            })
+            
+            /*
             req.on('data', (chunk) => {
               body.push(chunk);
             }).on('end', () => {
@@ -46,11 +64,12 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
                 })
                 .catch(error => console.error(error));
               res.end(body);
+              */
             });
             
             //console.log('Helloooooooooooooooooo!');
             //console.log(req.body);
-        })
+        //})
 
         
         // show user submittion 

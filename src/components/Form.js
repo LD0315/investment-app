@@ -14,7 +14,6 @@ import { Submit } from "./Submit";
 const userInput = {
     firstName: "",
     lastName: "",
-    dateOfBirth: "",
     email: "",
     phone: "",
     address: "",
@@ -22,24 +21,83 @@ const userInput = {
     amount: "",
 };
 
-
+/*
+var sql = require('mssql');
+        var config = {
+            server: 'lindb.database.windows.net',
+            database: 'investmentdb',
+            user: 'linlin',
+            password: 'panacea315&',
+            port: 1433
+        };
+*/
 export const Form = () => {
 
     const [formData, setForm] = useForm(userInput);
     const [submitted, setSubmitted] = useState(false);
     
-    const { firstName, lastName, email, phone, address, option, amount } = formData;
+    const { firstName, lastName, dateOfBirth, email, phone, address, option, amount } = formData;
+
+    
+    /*
+    const emailValidation = email => {
+        if (
+          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+            email,
+          )
+        ) {
+          return null;
+        }
+        if (email.trim() === '') {
+          return 'Email is required';
+        }
+        return 'Please enter a valid email';
+      };
+      */
     
 
     const handleOnSubmit = async ()=>{
         console.log('submit data',formData)
-        const response = await axios.post('localhost:4000/submit',JSON.stringify(formData));
+        const response = await axios.post('http://localhost:4000/submit', formData);
         // set state 'submitted' = true;
         setSubmitted(true);
         console.log(response);
     }
+    
+        // at this point use the formdata and submit it to your sql server (example sql server on azure, aws)
+        //var dbConn = new sql.Connection(config);
+    //5.
+    /*dbConn.connect().then(function () {
+        //6.
+        var request = new sql.Request(dbConn);
+        //7.
 
-    return (!submitted ?
+        var query = "INSERT  into investmentdb.dbo.Investments(FirstName, LastName, Email, BirthDate, Address, InvestmentType, Amount)" +
+        "values (N'Test2', N'TestLastName2', N'a2a@aaa.com', '2000-01-05', N'1223 hawken drive', N'Premium', 25500)";
+
+        request.query("select * from EmployeeInfo")
+        .then(function (recordSet) {
+            console.log(recordSet);
+            dbConn.close();
+        }).catch(function (err) {
+            //8.
+            console.log(err);
+            dbConn.close();
+        });
+    }).catch(function (err) {
+        //9.
+        console.log(err);
+    });*/
+   
+
+        // navigate to submit page using react-navigation
+    
+
+        //setSubmitted(true);
+        //console.log(response);
+    
+
+    return (!submitted?
             <form>
                 <Container maxWidth="xs">
                     <h2>Investment App</h2>
@@ -69,8 +127,11 @@ export const Form = () => {
                     />
                     <TextField
                         id="date"
+                        name=" dateOfBirth"
                         label="Date Of Birth"
                         type="date" 
+                        value={dateOfBirth}
+                        onChange={setForm}
                         placeholder="DD/MM/YYYY"
                         InputLabelProps={{
                         shrink: true,
@@ -86,11 +147,13 @@ export const Form = () => {
                         name="email"
                         value={email}
                         onChange={setForm}
+                        //onClick={emailValidation}
                         style={{ marginTop: '1.0rem' }}
                         variant="outlined"
                         fullWidth
                         required
                     />
+                     
                     <TextField 
                         label="Phone"
                         name="phone"
@@ -114,18 +177,17 @@ export const Form = () => {
 
                 <div style={{ marginTop: '1.5rem' }}>
                 <h3>Investment Funds</h3> <br></br>
-                
-              
-                    <Select 
+            
+                    <Select   
                         id="option"
                         label="Option"
                         name="option"
+                        required  
                         value={option}
                         onChange={setForm}
                         variant="outlined"
                         style={{ marginTop: '1.0rem' }}
                         fullWidth
-                        required
                     >
                     <MenuItem value="premium">Premium - From $10,000 - To $250,000 - </MenuItem>
                     <MenuItem value="select">Select - From $25,000 - To $250,000 - </MenuItem>
@@ -150,8 +212,6 @@ export const Form = () => {
                     variant="contained"
                     type="button"
                     style={{ marginTop: '1.5rem' }}
-                    //style="display:none"
-                    //onChange="document.getElementById('fsubmit').style.display = '';"
                     text="Save"    
                     onClick={handleOnSubmit}
                 >
