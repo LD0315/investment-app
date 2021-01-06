@@ -27,13 +27,7 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
         app.use(bodyParser.urlencoded({ extended: true }));
 
         app.post('/submit', (req, res) => {
-            //console.log('###',JSON.stringify(req.body));
-            // let body = [];
-            // body.push(req.body);
-
             usersCollection.insertOne(req.body, (error, result) => {
-                // console.log("!!!!!!!!!!!!!");
-                //console.log(result);
                 if (error) {
                     console.log(error)
                     res.status(400).json({ "error": error.message })
@@ -41,36 +35,12 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
                 };
 
                 res.json({
-                    //console.log("message");
                     "message" : res.status(200), // success
                     "data":  res.send(result)   // return data object
                 })
-            })
-            
-            /*
-            req.on('data', (chunk) => {
-              body.push(chunk);
-            }).on('end', () => {
-              body = Buffer.concat(body).toString();
-              usersCollection.insertOne(JSON.parse(body))
-                .then(result => {
-                    console.log(result);
-                    //res.header("Access-Control-Allow-Origin","*")
-                    
-                    res.send(result)
-                    //res.redirect('/')
-                    //console.log("!!!!!!!!!!!");
-                    
-                })
-                .catch(error => console.error(error));
-              res.end(body);
-              */
+              })
             });
             
-            //console.log('Helloooooooooooooooooo!');
-            //console.log(req.body);
-        //})
-
         
         // show user submittion 
         app.get('/', (req, res) => { 
@@ -93,9 +63,6 @@ MongoClient.connect('mongodb+srv://linlin:panacea315@cluster0.2dt1l.mongodb.net/
 
 
 
-//app.get('/', (req, res) => {
-    //res.send('Hello World');
-    //res.sendFile(__dirname + '/index.html')
-//});
+
 
 
