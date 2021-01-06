@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{ useState } from "react";
 import { useForm } from "react-hooks-helper";
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
@@ -79,7 +79,6 @@ export const Form = () => {
                     <hr></hr>
                     <h3>Names</h3>
                     <TextField 
-                        //id="outlined-required"
                         label="First Name"
                         name="firstName"
                         type="text"
@@ -91,7 +90,6 @@ export const Form = () => {
                         required
                     />
                     <TextField 
-                        //id="outlined-required"
                         label="Last Name"
                         name="lastName"
                         type="text"
@@ -157,7 +155,6 @@ export const Form = () => {
                     <InputLabel shrink id="investment-option" required style={{ margin: 'none', fontSize: '20px' }}>
                         Options
                     </InputLabel>
-                    
                     <Select
                         labelId="investment-option"  
                         name="option"
@@ -168,8 +165,6 @@ export const Form = () => {
                         style={{ marginTop: '1.0rem' }}
                         fullWidth
                     >
-                    
-                     
                     <MenuItem value="premium">Premium - From $10,000 - To $250,000 - </MenuItem>
                     <MenuItem value="select">Select - From $25,000 - To $250,000 - </MenuItem>
                 </Select>
