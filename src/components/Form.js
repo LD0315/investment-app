@@ -1,6 +1,5 @@
 import React,{useState} from "react";
 import { useForm } from "react-hooks-helper";
-//import { useForm } from "react-hook-form";
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
@@ -21,16 +20,7 @@ const userInput = {
     amount: "",
 };
 
-/*
-var sql = require('mssql');
-        var config = {
-            server: 'lindb.database.windows.net',
-            database: 'investmentdb',
-            user: 'linlin',
-            password: 'panacea315&',
-            port: 1433
-        };
-*/
+
 export const Form = () => {
 
     const [formData, setForm] = useForm(userInput);
@@ -64,39 +54,6 @@ export const Form = () => {
         console.log(response);
     }
     
-        // at this point use the formdata and submit it to your sql server (example sql server on azure, aws)
-        //var dbConn = new sql.Connection(config);
-    //5.
-    /*dbConn.connect().then(function () {
-        //6.
-        var request = new sql.Request(dbConn);
-        //7.
-
-        var query = "INSERT  into investmentdb.dbo.Investments(FirstName, LastName, Email, BirthDate, Address, InvestmentType, Amount)" +
-        "values (N'Test2', N'TestLastName2', N'a2a@aaa.com', '2000-01-05', N'1223 hawken drive', N'Premium', 25500)";
-
-        request.query("select * from EmployeeInfo")
-        .then(function (recordSet) {
-            console.log(recordSet);
-            dbConn.close();
-        }).catch(function (err) {
-            //8.
-            console.log(err);
-            dbConn.close();
-        });
-    }).catch(function (err) {
-        //9.
-        console.log(err);
-    });*/
-   
-
-        // navigate to submit page using react-navigation
-    
-
-        //setSubmitted(true);
-        //console.log(response);
-    
-
     return (!submitted?
             <form>
                 <Container maxWidth="xs">
@@ -222,7 +179,7 @@ export const Form = () => {
             </Container>
         </form>
         :<Submit/>
-        );
+    );
     
 };
 
